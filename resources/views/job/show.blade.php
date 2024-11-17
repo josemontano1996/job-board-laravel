@@ -1,3 +1,3 @@
 <x-layout>
-    <x-card>hello</x-card>
+       <x-job-card :$job />
 </x-layout>
