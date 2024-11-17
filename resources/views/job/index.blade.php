@@ -22,9 +22,14 @@
                 </div>
             </div>
             {{-- Escaping the html for the description at the samke time as parsing the br --}}
-            <p class="text-sm text-slate-500">
+            <p class="mb-4 text-sm text-slate-500">
                 {!! nl2br(e($job->description)) !!}
             </p>
+            <div>
+                <x-link-button :href="route('jobs.show', $job)">
+                    Show
+                </x-link-button>
+            </div>
         </x-card>
     @endforeach
 </x-layout>

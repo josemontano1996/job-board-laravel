@@ -28,7 +28,6 @@ class JobOfferController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -36,7 +35,7 @@ class JobOfferController extends Controller
      */
     public function show(JobOffer $jobOffer)
     {
-        //
+        return view('job.show', ['job' => $jobOffer]);
     }
 
     /**
