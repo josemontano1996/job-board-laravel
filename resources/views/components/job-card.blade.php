@@ -15,9 +15,6 @@
             </x-tag>
         </div>
     </div>
-    {{-- Escaping the html for the description at the samke time as parsing the br --}}
-    <p class="mb-4 text-sm text-slate-500">
-        {!! nl2br(e($job->description)) !!}
-    </p>
+
     {{ $slot }}
 </x-card>
