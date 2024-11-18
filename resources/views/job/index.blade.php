@@ -7,7 +7,7 @@
                     <div class="mb-1 font-semibold">Search</div>
                     <x-text-input
                         name="search"
-                        value=""
+                        value="{{request('search')}}"
                         placeholder="Search for any text"
                     />
                 </div>
@@ -16,16 +16,32 @@
                     <div class="flex space-x-2">
                         <x-text-input
                             name="min_salary"
-                            value=""
+                            value="{{request('min_salary')}}"
                             placeholder="Min. $"
                         />
                         <x-text-input
                             name="max_salary"
-                            value=""
+                            value="{{request('max_salary')}}"
                             placeholder="Max. $"
                         />
                     </div>
                 </div>
+
+                <div>
+                    <div class="mb-1 font-semibold">Experience</div>
+                    <x-radio-group
+                        name="experience"
+                        :options="\App\Models\JobOffer::$experience"
+                    />
+                </div>
+                <div>
+                    <div class="mb-1 font-semibold">Category</div>
+                    <x-radio-group
+                        name="category"
+                        :options="\App\Models\JobOffer::$category"
+                    />
+                </div>
+
             </div>
             <button class="btn">Filter</button>
         </form>
