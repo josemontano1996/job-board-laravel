@@ -54,7 +54,7 @@ class JobOfferController extends Controller
      */
     public function show(JobOffer $job)
     {
-        return view('job.show', ['job' => $job->load('employer')]);
+        return view('job.show', ['job' => $job->load('employer.jobOffers')]);
     }
 
     /**
