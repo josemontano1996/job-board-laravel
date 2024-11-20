@@ -36,6 +36,19 @@ class JobOffer extends Model
 
     }
 
+
+    public function scopeFilterByEmployerName(Builder $query, ?string $employerName): Builder
+    {
+        return $query->when(
+            $employerName,
+            function ($query) use ($employerName) {
+                $query->orWhereHas('employer', function ($query) use ($employerName) {
+                    $query->where('company_name', 'like', '%' . $employerName . '%');
+                });
+            }
+        );
+    }
+
     public function scopeFilterByMinSalary(Builder $query, ?int $minSalary): Builder
     {
         return $query->when(

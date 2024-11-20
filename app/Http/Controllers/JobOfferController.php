@@ -21,8 +21,9 @@ class JobOfferController extends Controller
         $experienceLevel = $request->get('experience');
         $jobCategory = $request->get('category');
 
-        $jobs = JobOffer::query()
+        $jobs = JobOffer::with('employer')
             ->filterByTitleAndDescription($searchQuery)
+            ->filterByEmployerName($searchQuery)
             ->filterByMinSalary($minSalary)
             ->filterByMaxSalary($maxSalary)
             ->filterByExperience($experienceLevel)
@@ -53,7 +54,7 @@ class JobOfferController extends Controller
      */
     public function show(JobOffer $job)
     {
-        return view('job.show', ['job' => $job]);
+        return view('job.show', ['job' => $job->load('employer')]);
     }
 
     /**
