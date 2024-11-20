@@ -13,7 +13,6 @@ class JobOfferController extends Controller
     public function index(Request $request)
     {
 
-        $jobs = JobOffer::query();
 
 
         $searchQuery = $request->get('search');
@@ -22,44 +21,16 @@ class JobOfferController extends Controller
         $experienceLevel = $request->get('experience');
         $jobCategory = $request->get('category');
 
-        $jobs->when(
-            $searchQuery,
-            function ($query) use ($searchQuery) {
-                $query->where(function ($query) use ($searchQuery) {
-                    $query->where('title', 'like', '%' . $searchQuery . '%')
-                        ->orWhere('description', 'like', '%' . $searchQuery . '%');
-                });
-            }
-        );
+        $jobs = JobOffer::query()
+            ->filterByTitleAndDescription($searchQuery)
+            ->filterByMinSalary($minSalary)
+            ->filterByMaxSalary($maxSalary)
+            ->filterByExperience($experienceLevel)
+            ->filterByJobCategory($jobCategory)
+            ->get();
 
-        $jobs->when(
-            $minSalary,
-            function ($query) use ($minSalary) {
-                $query->where('salary', '>=', $minSalary);
-            }
-        );
 
-        $jobs->when(
-            $maxSalary,
-            function ($query) use ($maxSalary) {
-                $query->where('salary', '<=', $maxSalary);
-            }
-        );
-
-        $jobs->when(
-            $experienceLevel,
-            function ($query) use ($experienceLevel) {
-                $query->where('experience', $experienceLevel);
-            }
-        );
-        $jobs->when(
-            $jobCategory,
-            function ($query) use ($jobCategory) {
-                $query->where('category', $jobCategory);
-            }
-        );
-
-        return view('job.index', ['jobs' => $jobs->get()]);
+        return view('job.index', ['jobs' => $jobs]);
     }
 
     /**
