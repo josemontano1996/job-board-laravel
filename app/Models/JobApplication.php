@@ -5,21 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Employer extends Model
+class JobApplication extends Model
 {
-    /** @use HasFactory<\Database\Factories\EmployerFactory> */
+    /** @use HasFactory<\Database\Factories\JobApplicationFactory> */
     use HasFactory;
 
-    public function jobOffers(): HasMany
+    public function jobOffer(): BelongsTo
     {
-        return $this->hasMany(JobOffer::class);
+        return $this->belongsTo(JobOffer::class);
     }
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-
 }
