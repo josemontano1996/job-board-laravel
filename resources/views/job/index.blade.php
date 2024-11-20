@@ -49,7 +49,7 @@
                     />
                 </div>
             </div>
-            <button class="btn">Filter</button>
+            <button class="btn w-full hover:border-blue-200">Filter</button>
         </form>
     </x-card>
     @foreach ($jobs as $job)
