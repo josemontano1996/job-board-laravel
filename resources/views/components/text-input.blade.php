@@ -1,11 +1,12 @@
 <div class="relative">
-    @if ($formId)
+    @if ($formRef)
         <button
             class="absolute right-0 top-0 flex h-full items-center pr-2"
             type="button"
-            onclick="
+            @click="$refs['input-{{$name}}'].value=''; $refs['{{$formRef}}'].submit();"
+           {{--  onclick="
         document.getElementById('{{ $name }}').value='';
-        document.getElementById('{{ $formId }}').submit();
+        document.getElementById('{{ $formId }}').submit(); --}}
         "
         >
             <svg
@@ -26,6 +27,7 @@
     @endif
 
     <input
+        x-ref="input-{{$name}}"
         type="text"
         placeholder="{{ $placeholder }}"
         name="{{ $name }}"
