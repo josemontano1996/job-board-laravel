@@ -8,6 +8,16 @@
         <p class="mb-4 text-sm text-slate-500">
             {!! nl2br(e($job->description)) !!}
         </p>
+
+        @can("apply", $job)
+            <x-link-button :href="route('job.application.create', $job)">
+                Apply now
+            </x-link-button>
+        @else
+            <div class="text-center text-sm font-medium text-slate-500">
+                You have already applied.
+            </div>
+        @endcan
     </x-job-card>
     <x-card class="mb-4">
         <h3 class="mb-4 text-lg font-medium">
