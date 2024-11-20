@@ -10,9 +10,9 @@
         </p>
     </x-job-card>
     <x-card class="mb-4">
-        <h4 class="mb-4 text-lg font-medium">
+        <h3 class="mb-4 text-lg font-medium">
             More from {{ $job->employer->company_name }}
-        </h4>
+        </h3>
         <div class="text-sm text-slate-500">
             @foreach ($job->employer->jobOffers as $otherJob)
                 <div class="mb-4 flex justify-between">
