@@ -22,7 +22,9 @@
             <ul class="flex items-center space-x-2 text-sm">
                 @auth
                     <li>
-                        {{ auth()->user()->name }}
+                        <a href="{{ route("my-job-applications.index") }}">
+                            My job applications
+                        </a>
                     </li>
                     <span>|</span>
                     <li>
