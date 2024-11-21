@@ -7,21 +7,12 @@
             @csrf
 
             <div class="mb-6">
-                <label
-                    for="email"
-                    class="mb-2 block text-sm font-medium text-slate-900"
-                >
-                    Email
-                </label>
+                <x-label for="email">Email</x-label>
+
                 <x-text-input name="email" />
             </div>
             <div class="mb-6">
-                <label
-                    for="password"
-                    class="mb-2 block text-sm font-medium text-slate-900"
-                >
-                    Password
-                </label>
+                <x-label for="password">Password</x-label>
                 <x-text-input type="password" name="password" />
             </div>
 
@@ -32,7 +23,7 @@
                         type="checkbox"
                         class="rounde-sm border border-slate-400"
                     />
-                    <label for="remember">Remember me</label>
+                    <x-label for="remember">Remember me</x-label>
                 </div>
                 <div>
                     <a href="#" class="text-indigo-600 hover:underline">
