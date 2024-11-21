@@ -28,7 +28,7 @@
                     <div class="text-center font-medium">No applicantions yet.</div>
                 @endforelse
                 <div class="flex space-x-2">
-                    <x-link-button href="{{route('my-job-offers.edit', $job)}}">Edit</x-link-button>
+                    <x-link-button href="{{route('my-job-offers.edit', $jobOffer)}}">Edit</x-link-button>
                 </div>
             </div>
         </x-job-card>
