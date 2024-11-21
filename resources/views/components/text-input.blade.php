@@ -1,4 +1,5 @@
 <div class="relative">
+@if('textarea' !== $type)
     @if ($formRef)
         <button
             class="absolute right-0 top-0 flex h-full items-center pr-2"
@@ -7,7 +8,7 @@
            {{--  onclick="
         document.getElementById('{{ $name }}').value='';
         document.getElementById('{{ $formId }}').submit(); --}}
-        "
+        
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -31,9 +32,33 @@
         type="{{$type}}"
         placeholder="{{ $placeholder }}"
         name="{{ $name }}"
-        value="{{ $value }}"
+        value="{{ old($name, $value) }}"
         id="{{ $name }}"
         @if($type ==="file" && $fileType) accept="{{ $fileType }}" @endif
-        {{ $attributes->merge(["class" => "boder-0 w-full border-slate-300 rounded-md px-2.5 py-1.5 text-sm ring-1 ring-slate-100 placeholder:text-slate-400 focus:ring-2 pr-8"]) }}
+        @class([
+            'w-full rounded-md border-0 px-2.5 py-1.5 text-sm ring-1 plaholder:text-slate-400 focus:ring-2',
+            'pr-8'=>$formRef,
+            'ring-slate-300' =>!$errors->has($name),
+            'ring-red-300' =>$errors->has($name)
+        ])
     />
+    @else
+    <textarea
+    name="{{ $name }}"
+    id="{{ $name }}"
+    @class([
+            'w-full rounded-md border-0 px-2.5 py-1.5 text-sm ring-1 plaholder:text-slate-400 focus:ring-2',
+            'pr-8'=>$formRef,
+            'ring-slate-300' =>!$errors->has($name),
+            'ring-red-300' =>$errors->has($name)
+        ])
+        >
+            {{old($name, $value)}}
+    </textarea>
+    @endif
+    @error($name)
+    <div role="alert" class="mt-1 text-sm text-red-500">
+        {{$message}}
+    </div>
+    @enderror
 </div>
