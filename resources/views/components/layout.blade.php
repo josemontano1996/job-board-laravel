@@ -28,6 +28,12 @@
                     </li>
                     <span>|</span>
                     <li>
+                        <a href="{{ route("my-job-offers.index") }}">
+                            My posted job offers
+                        </a>
+                    </li>
+                    <span>|</span>
+                    <li>
                         <form
                             action="{{ route("auth.destroy") }}"
                             method="POST"
@@ -52,13 +58,13 @@
                 <p>{{ session("success") }}</p>
             </div>
         @elseif (session("error"))
-              <div
+            <div
                 role="alert"
                 class="my-8 rounded-md border-l-4 border-red-300 bg-red-100 p-4 text-red-700 opacity-75"
             >
                 <p class="font-bold">Error!</p>
                 <p>{{ session("error") }}</p>
-              </div>
+            </div>
         @endif
 
         {{ $slot }}
