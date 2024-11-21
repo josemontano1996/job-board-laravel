@@ -9,6 +9,7 @@
         <form
             action="{{ route("job.application.store", $job) }}"
             method="POST"
+            enctype="multipart/form-data"
         >
             @csrf
             <div class="mb-4">
@@ -19,6 +20,15 @@
                     Expected salary
                 </label>
                 <x-text-input type="number" name="expected_salary" />
+            </div>
+            <div class="mb-4">
+                <label
+                    for="cv"
+                    class="mb-2 block text-sm font-medium text-slate-900"
+                >
+                    Upload CV
+                </label>
+                <x-text-input type="file" fileType=".pdf" name="cv" />
             </div>
             <button class="btn w-full">Apply</button>
         </form>
