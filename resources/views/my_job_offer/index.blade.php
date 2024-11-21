@@ -1,5 +1,5 @@
 <x-layout>
     <x-card>
-        all jobs
+        {{ $jobOffers }}
     </x-card>
 </x-layout>

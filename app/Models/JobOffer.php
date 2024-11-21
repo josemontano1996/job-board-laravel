@@ -13,8 +13,8 @@ class JobOffer extends Model
 {
     /** @use HasFactory<\Database\Factories\JobOfferFactory> */
     use HasFactory;
-
-
+   
+    protected $fillable = ['title', 'location', 'salary', 'description', 'experience', 'category'];
     public static array $experience = ['entry', 'intermediate', 'senior'];
     public static array $category = ['IT', 'Finance', 'Sales', 'Marketing'];
 

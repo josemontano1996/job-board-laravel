@@ -4,7 +4,7 @@
         class="mb-4"
     />
     <x-card class="mb-4">
-        <form action="route('my-job-offers.store')" method="POST">
+        <form action="{{route('my-job-offers.store')}}" method="POST">
             @csrf
             <h1 class="mb-6 text-center text-2xl font-medium">
                 Job Offer Form
