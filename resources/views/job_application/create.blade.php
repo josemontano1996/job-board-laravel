@@ -13,11 +13,13 @@
         >
             @csrf
             <div class="mb-4">
-                <x-label for="expected_salary">Expected salary</x-label>
+                <x-label :required="true" for="expected_salary">
+                    Expected salary
+                </x-label>
                 <x-text-input type="number" name="expected_salary" />
             </div>
             <div class="mb-4">
-                <x-label for="cv">Upload CV</x-label>
+                <x-label for="cv" :required="true">Upload CV</x-label>
 
                 <x-text-input type="file" fileType=".pdf" name="cv" />
             </div>

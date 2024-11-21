@@ -12,9 +12,9 @@ class Label extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public ?string $for=''
-    )
-    {
+        public ?string $for = '',
+        public ?bool $required = false
+    ) {
         //
     }
 
