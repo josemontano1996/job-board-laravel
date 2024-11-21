@@ -12,7 +12,7 @@ class MyJobOfferController extends Controller
      */
     public function index()
     {
-        $jobsOffers = auth()->user()->employer->jobOffers()->latest()->get();
+        $jobsOffers = auth()->user()->employer->jobOffers()->with('employer', 'jobApplications', 'jobApplications.user')->latest()->get();
 
         return view('my_job_offer.index', ['jobOffers' => $jobsOffers]);
     }

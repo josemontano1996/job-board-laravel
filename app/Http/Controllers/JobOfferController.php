@@ -28,6 +28,7 @@ class JobOfferController extends Controller
             ->filterByMaxSalary($maxSalary)
             ->filterByExperience($experienceLevel)
             ->filterByJobCategory($jobCategory)
+            ->latest()
             ->get();
 
 
