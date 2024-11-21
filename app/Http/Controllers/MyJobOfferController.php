@@ -19,7 +19,7 @@ class MyJobOfferController extends Controller
      */
     public function create()
     {
-        //
+        return view('my_job_offer.create');
     }
 
     /**

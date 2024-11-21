@@ -8,7 +8,7 @@
            {{--  onclick="
         document.getElementById('{{ $name }}').value='';
         document.getElementById('{{ $formId }}').submit(); --}}
-        
+
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@
     name="{{ $name }}"
     id="{{ $name }}"
     @class([
-            'w-full rounded-md border-0 px-2.5 py-1.5 text-sm ring-1 plaholder:text-slate-400 focus:ring-2',
+            'w-full rounded-md border-0 px-2.5 py-1.5 text-sm ring-1 plaholder:text-slate-400 focus:ring-2 resize-none',
             'pr-8'=>$formRef,
             'ring-slate-300' =>!$errors->has($name),
             'ring-red-300' =>$errors->has($name)
