@@ -28,11 +28,11 @@ class EmployerController extends Controller
     {
         $this->authorize('create', Employer::class);
 
-        auth()->user()->employer()->create([
-            $request->validate([
-                'company_name' => 'required|min:3|unique:employers,company_name'
-            ])
+        $validatedData = $request->validate([
+            'company_name' => 'required|min:3|unique:employers,company_name'
         ]);
+
+        auth()->user()->employer()->create([...$validatedData]);
 
         return redirect()->route('jobs.index')->with('success', 'Employer account created successfully.');
     }
