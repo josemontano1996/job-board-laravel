@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\JobOfferRequest;
 use App\Models\JobOffer;
+use App\Policies\JobOfferPolicy;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 
 class MyJobOfferController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $this->authorize('viewAnyEmployer', JobOffer::class);
+
         $jobsOffers = auth()->user()->employer->jobOffers()->with('employer', 'jobApplications', 'jobApplications.user')->latest()->get();
 
         return view('my_job_offer.index', ['jobOffers' => $jobsOffers]);
@@ -23,6 +28,7 @@ class MyJobOfferController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', JobOffer::class);
         return view('my_job_offer.create');
     }
 
@@ -31,6 +37,7 @@ class MyJobOfferController extends Controller
      */
     public function store(JobOfferRequest $request)
     {
+        $this->authorize('create', JobOffer::class);
 
         auth()->user()->employer->jobOffers()->create($request->validated());
 
@@ -43,6 +50,7 @@ class MyJobOfferController extends Controller
      */
     public function edit(JobOffer $myJobOffer)
     {
+        $this->authorize('update', $myJobOffer);
         return view('my_job_offer.edit', ['jobOffer' => $myJobOffer]);
     }
 

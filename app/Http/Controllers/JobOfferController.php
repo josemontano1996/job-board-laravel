@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\JobOffer;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 
 class JobOfferController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
 
-
+        $this->authorize('viewAny', JobOffer::class);
 
         $searchQuery = $request->get('search');
         $minSalary = $request->get('min_salary');
@@ -36,49 +38,12 @@ class JobOfferController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(JobOffer $job)
     {
+        $this->authorize('view', $job);
         return view('job.show', ['job' => $job->load('employer.jobOffers')]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(JobOffer $jobOffer)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, JobOffer $jobOffer)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(JobOffer $jobOffer)
-    {
-        //
-    }
 }
