@@ -25,10 +25,24 @@
                         </div>
                     </div>
                 @empty
-                    <div class="text-center font-medium">No applicantions yet.</div>
+                    <div class="text-center font-medium">
+                        No applicantions yet.
+                    </div>
                 @endforelse
                 <div class="flex space-x-2">
-                    <x-link-button href="{{route('my-job-offers.edit', $jobOffer)}}">Edit</x-link-button>
+                    <x-link-button
+                        href="{{route('my-job-offers.edit', $jobOffer)}}"
+                    >
+                        Edit
+                    </x-link-button>
+                    <form
+                        action="{{ route("my-job-offers.destroy", $jobOffer) }}"
+                        method="POST"
+                    >
+                        @csrf
+                        @method("DELETE")
+                        <button class="btn">Delete</button>
+                    </form>
                 </div>
             </div>
         </x-job-card>
